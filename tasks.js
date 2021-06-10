@@ -73,6 +73,7 @@ function hello(){
 
 /**
  * Returns help
+ * "help" lists all the possible commands that you can use.
  */
  function help(){
   console.log('quit or exit\nhello\nhelp\n')
