@@ -45,8 +45,14 @@ function onDataReceived(text) {
     help();
   } else if (text === "list\n") {
     list();
-  } else if (text.startsWith("add")) {
+  } else if (text.split(" ")[0] == "add" || text.trim() == "add") {
     add(text.substring(4));
+  } else if (text.split(" ")[0] === "remove" || text.trim() === "remove") {
+    if (text.trim().includes(" ")) {
+      remove(text.split(" ")[1]);
+    } else {
+      remove();
+    }
   } else {
     unknownCommand(text);
   }
@@ -103,6 +109,11 @@ function add(val) {
   } else console.log("can't add empty elements!");
 }
 
-function remove(val){
-
+function remove(val) {
+  if (val == undefined || val == null) {
+    arr.pop();
+  } else {
+    arr.splice(val - 1, 1);
+  }
 }
+
