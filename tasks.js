@@ -98,5 +98,11 @@ function list() {
 }
 
 function add(val) {
-  console.log(arr.push(val));
+  if (val.trim()) {
+    console.log(arr.push(val));
+  } else console.log("can't add empty elements!");
+}
+
+function remove(val){
+
 }
