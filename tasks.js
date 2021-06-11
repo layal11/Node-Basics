@@ -36,10 +36,11 @@ function startApp(name) {
 startApp("Layal Haidar");
 
 function onDataReceived(text) {
+  // console.log(hello)
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text === "hello\n") {
-    hello();
+  } else if (text.slice(0,5) === "hello") {
+    hello(text);
   } else if (text === "help\n") {
     help();
   } else {
@@ -55,7 +56,7 @@ function onDataReceived(text) {
  * @returns {void}
  */
 function unknownCommand(c) {
-  console.log('unknown command: "' + c.trim() + '"');
+  console.log('unknown command: "' + c.trim() + '" ');
 }
 
 /**
@@ -63,8 +64,8 @@ function unknownCommand(c) {
  *
  * @returns {void}
  */
-function hello() {
-  console.log("hello!");
+function hello(hello) {
+  console.log(hello.trim() + "!");
 }
 
 /**
@@ -84,3 +85,4 @@ function quit() {
   console.log("Quitting now, goodbye!");
   process.exit();
 }
+
