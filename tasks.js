@@ -1,4 +1,4 @@
-/**
+/** 
  * Starts the application
  * This is the function that is run when the app starts
  *
@@ -15,7 +15,7 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
-
+// 
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
