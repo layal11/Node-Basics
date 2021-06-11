@@ -53,6 +53,28 @@ function onDataReceived(text) {
     } else {
       remove();
     }
+  } else if (text.split(" ")[0] === "edit" || text.trim() === "edit") {
+    text = text.trim().replace("\n", "");
+    if (text.split(" ")[1] == undefined || text.split(" ")[1] == null) {
+      edit();
+    } else {
+      if (isNaN(text.split(" ")[1])) {
+        // [edit, layal, haidar]
+        var resstr = "";
+        for (let i = 1; i < text.split(" ").length; i++) {
+          resstr += text.split(" ")[i] + " ";
+        }
+        edit(resstr);
+      } else {
+        // edit 1 new text should change the task 1 to "new text"
+        // [edit, index like 1, layal, haidar]
+        var resstr = "";
+        for (let i = 2; i < text.split(" ").length; i++) {
+          resstr += text.split(" ")[i] + " ";
+        }
+        edit(resstr, text.split(" ")[1]);
+      }
+    }
   } else {
     unknownCommand(text);
   }
@@ -83,7 +105,9 @@ function hello(hello) {
  * "help" lists all the possible commands that you can use.
  */
 function help() {
-  console.log("lists all the possible commands:\n quit/exit\n hello\n list\n add\n remove\n help\n");
+  console.log(
+    "lists all the possible commands:\n quit/exit\n hello\n list\n add\n remove\n help\n"
+  );
 }
 
 /**
@@ -113,7 +137,25 @@ function remove(val) {
   if (val == undefined || val == null) {
     arr.pop();
   } else {
-    arr.splice(val - 1, 1);
-  }
+    if (arr[val - 1] != undefined && arr[val - 1] != null) {
+      arr.splice(val - 1, 1);
+    } else {
+      console.log("You entered a number that does not exist");
+    }
+  } //console.log(arr)
 }
 
+function edit(val, index) {
+  //edit without anything should give an error
+  if (val == undefined || val == null || val == "") {
+    console.log("edit without anything should give an error");
+  } else {
+    // edit new text should change the last task to "new text"
+    if (index == undefined || index == null) {
+      arr[arr.length - 1] = val;
+    } else {
+      arr[index - 1] = val;
+    }
+  }
+  // console.log(arr);
+}
