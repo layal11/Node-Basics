@@ -1,4 +1,4 @@
-/** 
+/**
  * Starts the application
  * This is the function that is run when the app starts
  *
@@ -15,7 +15,7 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
-// 
+//
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -39,10 +39,14 @@ function onDataReceived(text) {
   // console.log(hello)
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text.slice(0,5) === "hello") {
+  } else if (text.slice(0, 5) === "hello") {
     hello(text);
   } else if (text === "help\n") {
     help();
+  } else if (text === "list\n") {
+    list();
+  } else if (text.startsWith("add")) {
+    add(text.substring(4));
   } else {
     unknownCommand(text);
   }
@@ -86,3 +90,13 @@ function quit() {
   process.exit();
 }
 
+let arr = ["buy batata", "meet bob", "play violin"];
+function list() {
+  for (i = 0; i < arr.length; i++) {
+    console.log([i + 1] + ":" + arr[i]);
+  }
+}
+
+function add(val) {
+  console.log(arr.push(val));
+}
