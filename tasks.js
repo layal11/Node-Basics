@@ -83,7 +83,7 @@ function hello(hello) {
  * "help" lists all the possible commands that you can use.
  */
 function help() {
-  console.log("lists all the possible commands:\n quit/exit\n hello\n help\n");
+  console.log("lists all the possible commands:\n quit/exit\n hello\n list\n add\n remove\n help\n");
 }
 
 /**
